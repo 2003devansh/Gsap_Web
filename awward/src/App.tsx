@@ -1,5 +1,13 @@
+import Navbar from "./components/Navbar";
+import Hero from "./sections/Hero";
+
 const App = () => {
-  return <div></div>;
+  return (
+    <main>
+      <Navbar />
+      <Hero />
+    </main>
+  );
 };
 
 export default App;
