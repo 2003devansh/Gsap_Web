@@ -38,10 +38,37 @@ const FlavourTitle = () => {
         trigger: ".flavor-section",
       },
     });
+
+    const titleTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".flavor-section",
+        start: "top 80%",
+        end: "bottom 80%",
+        scrub: true,
+      },
+    });
+
+    titleTl
+      .to(".first-text-split", {
+        xPercent: -30,
+        ease: "power1.inOut",
+      })
+      .to(".flavor-text-scroll", {
+        xPercent: -22,
+        ease: "power1.inOut",
+      })
+      .to(
+        ".second-text-split",
+        {
+          xPercent: -10,
+          ease: "power1.inOut",
+        },
+        "<",
+      );
   });
   return (
     <div className="general-title col-center h-full 2xl:gap-32 xl:gap-24 gap-16">
-      <div className="overflow-hidden 2xl:py-0 py-3 first-test-split">
+      <div className="overflow-hidden 2xl:py-0 py-3 first-text-split">
         <h1>We have 6</h1>
       </div>
 
@@ -56,7 +83,7 @@ const FlavourTitle = () => {
         </div>
       </div>
 
-      <div className="overflow-hidden 2xl:py-0 py-3 second-test-split">
+      <div className="overflow-hidden 2xl:py-0 py-3 second-text-split">
         <h1>delicious flavour</h1>
       </div>
     </div>
