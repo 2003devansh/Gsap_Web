@@ -1,8 +1,40 @@
 import { useGSAP } from "@gsap/react";
 import gsap, { SplitText } from "gsap/all";
+import { useMediaQuery } from "react-responsive";
 
 const FlavourTitle = () => {
+  const isTablet = useMediaQuery({
+    query: "{max-width : 1024px}",
+  });
   useGSAP(() => {
+    if (!isTablet) {
+      const titleTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".flavor-section",
+          start: "top 80%",
+          end: "bottom 80%",
+          scrub: true,
+        },
+      });
+
+      titleTl
+        .to(".first-text-split", {
+          xPercent: -30,
+          ease: "power1.inOut",
+        })
+        .to(".flavor-text-scroll", {
+          xPercent: -22,
+          ease: "power1.inOut",
+        })
+        .to(
+          ".second-text-split",
+          {
+            xPercent: -10,
+            ease: "power1.inOut",
+          },
+          "<",
+        );
+    }
     const firstSplit = SplitText.create(".first-test-split h1", {
       type: "chars",
     });
@@ -38,33 +70,6 @@ const FlavourTitle = () => {
         trigger: ".flavor-section",
       },
     });
-
-    const titleTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".flavor-section",
-        start: "top 80%",
-        end: "bottom 80%",
-        scrub: true,
-      },
-    });
-
-    titleTl
-      .to(".first-text-split", {
-        xPercent: -30,
-        ease: "power1.inOut",
-      })
-      .to(".flavor-text-scroll", {
-        xPercent: -22,
-        ease: "power1.inOut",
-      })
-      .to(
-        ".second-text-split",
-        {
-          xPercent: -10,
-          ease: "power1.inOut",
-        },
-        "<",
-      );
   });
   return (
     <div className="general-title col-center h-full 2xl:gap-32 xl:gap-24 gap-16">
